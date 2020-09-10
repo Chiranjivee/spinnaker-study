@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: workingclasswarriors-microservices-microservice
+        app: workingclasswarriors-microservice
         stack: frontend
         source: demo
-    name: workingclasswarriors-microservices-microservice
+    name: workingclasswarriors-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: workingclasswarriors-microservices-microservice
+            run: workingclasswarriors-microservice
     template:
         metadata:
             labels:
-                app: workingclasswarriors-microservices-microservice
-                run: workingclasswarriors-microservices-microservice
+                app: workingclasswarriors-microservice
+                run: workingclasswarriors-microservice
                 source: demo
         spec:
             containers:
-                -   image: 702037529261.dkr.ecr.us-west-2.amazonaws.com/workingclasswarriors-microservices-microservice
-                    name: workingclasswarriors-microservices-microservice
+                -   image: 702037529261.dkr.ecr.us-west-2.amazonaws.com/workingclasswarriors-microservice
+                    name: workingclasswarriors-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,13 +31,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: workingclasswarriors-microservices-microservice-service
-    name: workingclasswarriors-microservices-microservice-service
+        app: workingclasswarriors-microservice-service
+    name: workingclasswarriors-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: workingclasswarriors-microservices-microservice
+        app: workingclasswarriors-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -59,5 +59,5 @@ spec:
                 paths:
                     -   path: /workingclasswarriors-microservices(/|$)(.*)
                         backend:
-                            serviceName: workingclasswarriors-microservices-microservice-service
+                            serviceName: workingclasswarriors-microservice-service
                             servicePort: 30201
